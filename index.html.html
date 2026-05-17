@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Werbepark Syke – Standortkarte</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #111820;
+        font-family: 'Segoe UI', sans-serif;
+        color: #e2d5c3;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 32px 20px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+
+      header h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: #f3d1ac;
+        text-transform: uppercase;
+      }
+
+      header p {
+        font-size: 0.85rem;
+        color: #746855;
+        margin-top: 6px;
+        letter-spacing: 0.04em;
+      }
+
+      #map-wrapper {
+        width: 100%;
+        max-width: 960px;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #2f3948;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      }
+
+      #map {
+        height: 600px;
+        width: 100%;
+        background-color: #242f3e;
+      }
+
+      footer {
+        margin-top: 20px;
+        font-size: 0.75rem;
+        color: #3d4a58;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+
+    <header>
+      <h1>Werbepark Syke – Standorte</h1>
+      <p>Klicken Sie auf einen Marker für Details zur Werbefläche</p>
+    </header>
+
+    <div id="map-wrapper">
+      <div id="map"></div>
+    </div>
+
+    <footer>© Printhaus Syke – Werbeproduktion seit 1924</footer>
+
+    <script>
+      function initMap() {
+        const zentrum = { lat: 52.9109, lng: 8.8298 };
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 12,
+          center: zentrum,
+          styles: [
+            { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+            { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+            { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+            { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+            { featureType: "poi", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+            { featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#263c3f" }] },
+            { featureType: "poi.park", elementType: "labels.text.fill", stylers: [{ color: "#6b9a76" }] },
+            { featureType: "road", elementType: "geometry", stylers: [{ color: "#38414e" }] },
+            { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#212a37" }] },
+            { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#746855" }] },
+            { featureType: "road.highway", elementType: "geometry.stroke", stylers: [{ color: "#1f2835" }] },
+            { featureType: "road.highway", elementType: "labels.text.fill", stylers: [{ color: "#f3d1ac" }] },
+            { featureType: "transit", elementType: "geometry", stylers: [{ color: "#2f3948" }] },
+            { featureType: "transit.station", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+            { featureType: "water", elementType: "geometry", stylers: [{ color: "#17263c" }] },
+            { featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#515c6d" }] },
+            { featureType: "water", elementType: "labels.text.stroke", stylers: [{ color: "#17263c" }] }
+          ]
+        });
+
+        const werbeflaechen = [
+          {
+            titel: "Werbepark Syke",
+            position: { lat: 52.910961680872944, lng: 8.82987863234809 },
+            beschreibung: "<div style='font-family:Segoe UI,sans-serif;max-width:220px'><h3 style='color:#f3d1ac;margin-bottom:6px'>Werbepark Syke</h3><p style='color:#555;font-size:0.85rem;margin-bottom:10px'>Hier Infos zur Fläche eintragen...</p><a href='#kontakt' style='color:#d59563;font-size:0.85rem;text-decoration:none;font-weight:600'>→ Jetzt anfragen</a></div>"
+          },
+          {
+            titel: "Werbepark Fläche Heiligenfelde",
+            position: { lat: 52.87768748531983, lng: 8.865020241620714 },
+            beschreibung: "<div style='font-family:Segoe UI,sans-serif;max-width:220px'><h3 style='color:#f3d1ac;margin-bottom:6px'>Werbepark Heiligenfelde</h3><p style='color:#555;font-size:0.85rem;margin-bottom:10px'>Hier Infos zur Fläche eintragen...</p><a href='#kontakt' style='color:#d59563;font-size:0.85rem;text-decoration:none;font-weight:600'>→ Jetzt anfragen</a></div>"
+          },
+          {
+            titel: "Werbepark Fläche Syke Gewerbegebiet",
+            position: { lat: 52.9193578304957, lng: 8.800061020062083 },
+            beschreibung: "<div style='font-family:Segoe UI,sans-serif;max-width:220px'><h3 style='color:#f3d1ac;margin-bottom:6px'>Werbepark Syke Gewerbegebiet</h3><p style='color:#555;font-size:0.85rem;margin-bottom:10px'>Hier Infos zur Fläche eintragen...</p><a href='#kontakt' style='color:#d59563;font-size:0.85rem;text-decoration:none;font-weight:600'>→ Jetzt anfragen</a></div>"
+          },
+          {
+            titel: "Werbepark Fläche Barrien B6",
+            position: { lat: 52.936929565323176, lng: 8.825641851123429 },
+            beschreibung: "<div style='font-family:Segoe UI,sans-serif;max-width:220px'><h3 style='color:#f3d1ac;margin-bottom:6px'>Werbepark Barrien B6</h3><p style='color:#555;font-size:0.85rem;margin-bottom:10px'>Hier Infos zur Fläche eintragen...</p><a href='#kontakt' style='color:#d59563;font-size:0.85rem;text-decoration:none;font-weight:600'>→ Jetzt anfragen</a></div>"
+          }
+        ];
+
+        const infoWindow = new google.maps.InfoWindow();
+
+        werbeflaechen.forEach(flaeche => {
+          const marker = new google.maps.Marker({
+            position: flaeche.position,
+            map: map,
+            title: flaeche.titel,
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              scale: 10,
+              fillColor: "#f3d1ac",
+              fillOpacity: 1,
+              strokeColor: "#242f3e",
+              strokeWeight: 2
+            }
+          });
+
+          marker.addListener("click", () => {
+            infoWindow.setContent(flaeche.beschreibung);
+            infoWindow.open(map, marker);
+          });
+        });
+      }
+    </script>
+
+    <!-- Google Maps API – korrekter Script-Tag mit Key und Callback -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyLsaMxlKGimeJm9JBPGuqp0blwFuy4TQ&callback=initMap"
+      async
+      defer
+    ></script>
+
+  </body>
+</html>
