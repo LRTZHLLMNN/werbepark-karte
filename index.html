@@ -12,71 +12,18 @@
       }
 
       body {
-        background-color: #111820;
-        font-family: 'Segoe UI', sans-serif;
-        color: #e2d5c3;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 32px 20px;
-      }
-
-      header {
-        text-align: center;
-        margin-bottom: 28px;
-      }
-
-      header h1 {
-        font-size: 1.6rem;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        color: #f3d1ac;
-        text-transform: uppercase;
-      }
-
-      header p {
-        font-size: 0.85rem;
-        color: #746855;
-        margin-top: 6px;
-        letter-spacing: 0.04em;
-      }
-
-      #map-wrapper {
-        width: 100%;
-        max-width: 960px;
-        border-radius: 10px;
-        overflow: hidden;
-        border: 1px solid #2f3948;
-        box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        background: transparent;
       }
 
       #map {
-        height: 600px;
+        height: 100vh;
         width: 100%;
-        background-color: #242f3e;
-      }
-
-      footer {
-        margin-top: 20px;
-        font-size: 0.75rem;
-        color: #3d4a58;
-        text-align: center;
       }
     </style>
   </head>
   <body>
 
-    <header>
-      <h1>Werbepark Syke – Standorte</h1>
-      <p>Klicken Sie auf einen Marker für Details zur Werbefläche</p>
-    </header>
-
-    <div id="map-wrapper">
-      <div id="map"></div>
-    </div>
-
-    <footer>© Printhaus Syke – Werbeproduktion seit 1924</footer>
+    <div id="map"></div>
 
     <script>
       function initMap() {
@@ -138,10 +85,10 @@
             title: flaeche.titel,
             icon: {
               path: google.maps.SymbolPath.CIRCLE,
-              scale: 10,
-              fillColor: "#f3d1ac",
+              scale: 16,
+              fillColor: "#ff0000",
               fillOpacity: 1,
-              strokeColor: "#242f3e",
+              strokeColor: "#ffffff",
               strokeWeight: 2
             }
           });
@@ -154,7 +101,6 @@
       }
     </script>
 
-    <!-- Google Maps API – korrekter Script-Tag mit Key und Callback -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyLsaMxlKGimeJm9JBPGuqp0blwFuy4TQ&callback=initMap"
       async
